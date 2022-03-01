@@ -1,21 +1,14 @@
-FROM node:14.2.0 as builder
-LABEL application="react-app"
-LABEL owner="raja"
+FROM node:14.2.0 as codeimage
+LABEL application: "react-app"
+LABEL owner: "rohit"
 RUN mkdir /code
-WORKDIR /code
+WORKDIR	/code
 COPY package*.json ./
 RUN npm install
 COPY . .
 RUN yarn build
-# EXPOSE 3000
-# CMD ["npm","start"]
-
-
-
-
-# stage 2
 
 
 FROM nginx
-COPY --from=builder /code/build/ /usr/share/nginx/html
+COPY --from=codeimage /code/build/ /usr/share/nginx/html
 
