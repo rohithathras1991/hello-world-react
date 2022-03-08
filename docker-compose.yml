@@ -1,0 +1,8 @@
+version: "3"
+services:
+  reactapp:
+      image: rohithathras1991/reactapp
+      ports:
+        - 4000:80
+
+
